@@ -1,0 +1,50 @@
+<view class="login-container">
+  <!-- Logo区域 -->
+  <view class="logo-section">
+    <view class="logo-icon">🎓</view>
+    <text class="app-name">留学排行榜</text>
+    <text class="app-subtitle">College Admission Rankings</text>
+  </view>
+
+  <!-- 登录表单 -->
+  <view class="login-section">
+    <!-- 用户头像显示 -->
+    <view class="avatar-section" wx:if="{{userInfo}}">
+      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <text class="nickname">{{userInfo.nickName}}</text>
+    </view>
+
+    <!-- 登录按钮 -->
+    <view class="button-section">
+      <button 
+        class="login-btn" 
+        bindtap="handleWechatLogin"
+        wx:if="{{!isLoggedIn}}"
+      >
+        <text class="btn-icon">🔐</text>
+        <text>微信快速登录</text>
+      </button>
+
+      <button 
+        class="logout-btn" 
+        bindtap="handleLogout"
+        wx:if="{{isLoggedIn}}"
+      >
+        <text>退出登录</text>
+      </button>
+    </view>
+
+    <!-- 用户协议 -->
+    <view class="agreement-section">
+      <text class="agreement-text">登录即表示同意</text>
+      <text class="agreement-link">《用户协议》</text>
+      <text class="agreement-text">和</text>
+      <text class="agreement-link">《隐私政策》</text>
+    </view>
+  </view>
+
+  <!-- 底部装饰 -->
+  <view class="footer-decoration">
+    <text class="footer-text">让留学信息更透明</text>
+  </view>
+</view>
