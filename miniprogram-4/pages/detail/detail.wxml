@@ -1,7 +1,11 @@
-<view class="container">
+<view class="container {{type == 'ranking' ? 'container--ranking' : ''}}">
   <!-- 图片展示区域 -->
-  <view class="image-section">
+  <view class="image-section" wx:if="{{imageUrl}}">
     <image src="{{imageUrl}}" mode="aspectFill" class="detail-image"></image>
+  </view>
+  <view class="image-placeholder" wx:if="{{type == 'ranking' && !imageUrl}}">
+    <text class="placeholder-text">学校详情</text>
+    <text class="placeholder-hint">内容待完善</text>
   </view>
 
   <!-- 内容区域 -->

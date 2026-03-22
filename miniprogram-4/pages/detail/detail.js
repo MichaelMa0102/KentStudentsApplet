@@ -21,7 +21,14 @@ Page({
       description: decodeURIComponent(description || ''),
       imageUrl: decodeURIComponent(image || ''),
       content: decodeURIComponent(content || ''),
-      typeText: type === 'banner' ? '轮播图' : type === 'activity' ? '活动' : ''
+      typeText:
+        type === 'banner'
+          ? '轮播图'
+          : type === 'activity'
+            ? '活动'
+            : type === 'ranking'
+              ? 'OFFER学校'
+              : ''
     });
 
     // 设置导航栏标题

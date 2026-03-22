@@ -37,14 +37,6 @@ Page({
       { id: 10, name: '资讯信息', icon: 'ℹ️', color: '#f3e5f5' }
     ],
     
-    // 排行榜数据
-    rankings: [
-      { id: 1, name: '用户A', score: 1000 },
-      { id: 2, name: '用户B', score: 950 },
-      { id: 3, name: '用户C', score: 900 },
-      { id: 4, name: '用户D', score: 850 },
-      { id: 5, name: '用户E', score: 800 }
-    ],
     
     // 活动/OFFER数据
     activities: [
@@ -126,8 +118,15 @@ Page({
   // 点击分类按钮
   onCategoryTap: function(e) {
     const type = e.currentTarget.dataset.type;
-    console.log('点击分类:', type);
-    // 可以在这里添加跳转逻辑
+    if (type === 'undergraduate') {
+      wx.navigateTo({
+        url: '/pages/undergraduate/undergraduate'
+      });
+      return;
+    }
+    if (type === 'school') {
+      wx.showToast({ title: '学校榜开发中', icon: 'none' });
+    }
   },
 
   // 点击服务图标

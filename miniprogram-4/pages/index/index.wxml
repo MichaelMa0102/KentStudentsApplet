@@ -99,19 +99,4 @@
     </view>
   </view>
 
-  <!-- 6. 排行榜单 -->
-  <view class="ranking-section">
-    <view class="section-header">
-      <text class="section-header-title">排行榜单</text>
-    </view>
-    <view class="ranking-list">
-      <view class="ranking-item" wx:for="{{rankings}}" wx:key="id">
-        <view class="rank-number-wrapper">
-          <text class="rank-number">{{index + 1}}</text>
-        </view>
-        <text class="rank-name">{{item.name}}</text>
-        <text class="rank-score">{{item.score}}分</text>
-      </view>
-    </view>
-  </view>
 </view>
