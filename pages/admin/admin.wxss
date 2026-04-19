@@ -1,0 +1,186 @@
+/* 管理中心样式 */
+.admin-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* 顶部导航栏 */
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100rpx;
+  background: #1e3c72;
+  padding: 0 30rpx;
+}
+
+.admin-header-left {
+  width: 60rpx;
+}
+
+.admin-header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.admin-header-right {
+  width: 60rpx;
+}
+
+.back-icon {
+  color: white;
+  font-size: 44rpx;
+  font-weight: bold;
+}
+
+.admin-title {
+  color: white;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+/* 管理员信息 */
+.admin-info {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  background: white;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+.admin-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  border: 3rpx solid #e6f7ff;
+}
+
+.admin-details {
+  flex: 1;
+}
+
+.admin-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.admin-role {
+  font-size: 24rpx;
+  color: #1e90ff;
+}
+
+/* 管理功能列表 */
+.admin-menu {
+  margin: 0 20rpx 20rpx;
+}
+
+.admin-section {
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+  padding-left: 10rpx;
+  border-left: 4rpx solid #1e90ff;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+}
+
+.menu-item {
+  background: white;
+  border-radius: 16rpx;
+  padding: 30rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.menu-item:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.menu-icon {
+  font-size: 56rpx;
+  margin-bottom: 16rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f8ff;
+}
+
+.menu-icon--school {
+  background: #e6f7ff;
+}
+
+.menu-icon--offer {
+  background: #f6ffed;
+}
+
+.menu-icon--banner {
+  background: #fff7e6;
+}
+
+.menu-icon--user {
+  background: #f0f5ff;
+}
+
+.menu-icon--role {
+  background: #f9f0ff;
+}
+
+.menu-icon--settings {
+  background: #f0f0f0;
+}
+
+.menu-icon--log {
+  background: #fef6ff;
+}
+
+.menu-text {
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
+}
+
+/* 退出登录 */
+.logout-section {
+  padding: 0 20rpx 40rpx;
+}
+
+.logout-btn {
+  background: white;
+  border: 2rpx solid #ff4d4f;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:active {
+  background: #fff1f0;
+}
+
+.logout-text {
+  font-size: 28rpx;
+  color: #ff4d4f;
+  font-weight: bold;
+}

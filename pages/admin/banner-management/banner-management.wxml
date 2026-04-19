@@ -1,0 +1,84 @@
+<view class="banner-management-container">
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <view class="header-left" bindtap="onBack">
+      <text class="back-icon">‹</text>
+    </view>
+    <view class="header-center">
+      <text class="header-title">轮播图管理</text>
+    </view>
+    <view class="header-right" bindtap="showAddModal">
+      <text class="add-icon">+</text>
+    </view>
+  </view>
+
+  <!-- 数据列表 -->
+  <view class="data-list">
+    <view class="list-header">
+      <text class="header-preview">预览</text>
+      <text class="header-title">标题</text>
+      <text class="header-action">操作</text>
+    </view>
+    
+    <scroll-view class="list-content" scroll-y>
+      <view class="list-item" wx:for="{{bannerList}}" wx:key="id">
+        <view class="banner-preview">
+          <image class="banner-image" src="{{item.url}}" mode="aspectFill"></image>
+        </view>
+        <view class="banner-info">
+          <text class="banner-title">{{item.title}}</text>
+          <text class="banner-id">ID: {{item.id}}</text>
+        </view>
+        <view class="banner-action">
+          <button class="edit-btn" bindtap="showEditModal" data-item="{{item}}">编辑</button>
+          <button class="delete-btn" bindtap="confirmDelete" data-id="{{item.id}}">删除</button>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 添加/编辑弹窗 -->
+  <view wx:if="{{showModal}}" class="modal-overlay" bindtap="hideModal">
+    <view class="modal-content" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">{{isEdit ? '编辑轮播图' : '添加轮播图'}}</text>
+        <text class="modal-close" bindtap="hideModal">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="form-label">轮播图标题</text>
+          <input 
+            class="form-input" 
+            value="{{formData.title}}" 
+            bindinput="onFormInput" 
+            data-field="title"
+            placeholder="请输入轮播图标题"
+          />
+        </view>
+        <view class="form-item">
+          <text class="form-label">图片URL</text>
+          <input 
+            class="form-input" 
+            value="{{formData.url}}" 
+            bindinput="onFormInput" 
+            data-field="url"
+            placeholder="请输入图片URL"
+          />
+        </view>
+        <view class="form-item">
+          <text class="form-label">图片预览</text>
+          <view class="image-preview" wx:if="{{formData.url}}">
+            <image class="preview-image" src="{{formData.url}}" mode="aspectFill"></image>
+          </view>
+          <view class="image-placeholder" wx:else>
+            <text class="placeholder-text">请输入图片URL查看预览</text>
+          </view>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="cancel-btn" bindtap="hideModal">取消</button>
+        <button class="confirm-btn" bindtap="saveBanner">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

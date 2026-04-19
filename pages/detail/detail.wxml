@@ -1,0 +1,56 @@
+<view class="container {{!imageUrl ? 'container--no-hero' : ''}}">
+  <view class="image-section" wx:if="{{imageUrl}}">
+    <image src="{{imageUrl}}" mode="aspectFill" class="detail-image"></image>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-section">
+    <view class="title-section">
+      <text class="detail-title">{{title}}</text>
+      <text class="detail-type">{{typeText}}</text>
+    </view>
+
+    <view class="divider"></view>
+
+    <!-- 描述信息 -->
+    <view class="info-section" wx:if="{{description}}">
+      <text class="info-label">描述：</text>
+      <text class="info-content">{{description}}</text>
+    </view>
+
+    <!-- 录取案例表格 -->
+    <view class="case-table" wx:if="{{type === 'studentCases'}}">
+      <view class="table-header">
+        <text class="header-name">姓名</text>
+        <text class="header-offer">OFFER</text>
+        <text class="header-class">班级</text>
+      </view>
+      <view class="table-body">
+        <view class="table-row" wx:for="{{studentCases}}" wx:key="id">
+          <view class="row-name">
+            <text class="student-name">{{item.name}}</text>
+            <text class="tag {{item.tag}}">{{item.tag}}</text>
+          </view>
+          <view class="row-offer">
+        <text class="offer-text">{{item.offer}}</text>
+        <text class="year-text">{{item.year}}</text>
+      </view>
+          <view class="row-class">
+            <text class="class-text">{{item.class}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 详细内容 -->
+    <view class="content-section-inner" wx:if="{{content && type !== 'studentCases'}}">
+      <text class="content-label">详细内容：</text>
+      <text class="content-text">{{content}}</text>
+    </view>
+
+    <!-- 返回按钮 -->
+    <view class="button-section">
+      <button class="back-button" bindtap="goBack">返回</button>
+    </view>
+  </view>
+</view>

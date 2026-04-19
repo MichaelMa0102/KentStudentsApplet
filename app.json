@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/undergraduate/undergraduate",
+    "pages/login/login",
+    "pages/detail/detail",
+    "pages/admin/admin",
+    "pages/admin/offer-management/offer-management",
+    "pages/admin/user-management/user-management",
+    "pages/admin/banner-management/banner-management"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#667eea",
+    "navigationBarTitleText": "我的小程序",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
+
+

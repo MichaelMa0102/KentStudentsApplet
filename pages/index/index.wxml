@@ -1,0 +1,138 @@
+<view class="container">
+  <!-- 1. 顶部导航栏 -->
+  <view class="top-nav">
+    <view class="nav-left" bindtap="onUserTap">
+      <image class="user-avatar-small" src="{{userAvatar || '/images/default-avatar.png'}}" mode="aspectFill" wx:if="{{isLoggedIn}}"></image>
+      <text class="welcome-text">欢迎 {{userName}}</text>
+    </view>
+    <view class="nav-right-menu" wx:if="{{isLoggedIn}}" catchtap="showLogoutMenu">
+      <text class="nav-icon">⋯</text>
+    </view>
+    <view class="nav-center">
+      <text class="nav-title">升学榜单</text>
+    </view>
+    <view class="nav-right">
+      <text class="nav-icon">⋯</text>
+    </view>
+  </view>
+
+  <!-- 2. 轮播图区域 -->
+  <view class="swiper-section">
+    <swiper 
+      class="swiper-container" 
+      indicator-dots="{{true}}"
+      autoplay="{{true}}"
+      interval="{{3000}}"
+      duration="{{500}}"
+      circular="{{true}}"
+      indicator-active-color="#ff4757"
+      bindchange="onSwiperChange"
+    >
+      <swiper-item wx:for="{{swiperImages}}" wx:key="index">
+        <view class="swiper-item-wrapper" bindtap="navigateToDetail" data-index="{{index}}">
+          <image 
+            src="{{item.url}}"
+            class="swiper-image" 
+            mode="aspectFill"
+            data-url="{{item.url}}"
+          />
+          <view class="swiper-overlay">
+            <view class="swiper-title">{{item.title}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+    
+    <!-- 轮播图控制 -->
+    <view class="swiper-controls">
+      <view class="control-btn" bindtap="prevImage">‹</view>
+      <view class="control-info">
+        <text class="current-index">{{currentSwiper + 1}}</text>
+        <text class="total-count">/{{swiperImages.length}}</text>
+      </view>
+      <view class="control-btn" bindtap="nextImage">›</view>
+    </view>
+  </view>
+
+  <!-- 3. 升学榜单入口（本科 / 转学 / 艺术） -->
+  <view class="rank-section">
+    <view class="rank-section-head">
+      <view class="rank-section-titles">
+        <text class="rank-section-title">选择榜单</text>
+        <text class="rank-section-sub">查看本校申学与录取数据</text>
+      </view>
+    </view>
+
+    <view class="rank-card rank-card--featured" bindtap="onRankEntryTap" data-id="undergraduate">
+      <view class="rank-card-bg"></view>
+      <view class="rank-card-inner">
+        <view class="rank-card-icon-wrap rank-card-icon-wrap--light">
+          <text class="rank-card-emoji">🎓</text>
+        </view>
+        <view class="rank-card-text">
+          <text class="rank-card-name">本科榜</text>
+          <text class="rank-card-desc">综合类本科 OFFER 与录取人数排行</text>
+        </view>
+        <text class="rank-card-arrow">›</text>
+      </view>
+      <view class="rank-card-badge">热门</view>
+    </view>
+
+    <view class="rank-row">
+      <view class="rank-card rank-card--half rank-card--mint" bindtap="onRankEntryTap" data-id="transfer">
+        <view class="rank-card-inner rank-card-inner--stack">
+          <view class="rank-card-icon-wrap">
+            <text class="rank-card-emoji">🔄</text>
+          </view>
+          <text class="rank-card-name rank-card-name--sm">本科转学榜</text>
+          <text class="rank-card-desc rank-card-desc--sm">转学录取</text>
+        </view>
+      </view>
+      <view class="rank-card rank-card--half rank-card--lavender" bindtap="onRankEntryTap" data-id="art">
+        <view class="rank-card-inner rank-card-inner--stack">
+          <view class="rank-card-icon-wrap">
+            <text class="rank-card-emoji">🎨</text>
+          </view>
+          <text class="rank-card-name rank-card-name--sm">艺术榜</text>
+          <text class="rank-card-desc rank-card-desc--sm">艺术类专业</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 管理员入口（仅管理员可见） -->
+    <view wx:if="{{isAdmin}}" class="rank-card rank-card--featured rank-card--admin" bindtap="goToAdmin">
+      <view class="rank-card-bg"></view>
+      <view class="rank-card-inner">
+        <view class="rank-card-icon-wrap rank-card-icon-wrap--light">
+          <text class="rank-card-emoji">⚙️</text>
+        </view>
+        <view class="rank-card-text">
+          <text class="rank-card-name">管理中心</text>
+          <text class="rank-card-desc">数据管理、用户权限设置</text>
+        </view>
+        <text class="rank-card-arrow">›</text>
+      </view>
+      <view class="rank-card-badge rank-card-badge--admin">管理员</view>
+    </view>
+  </view>
+
+  <!-- 5. 最新OFFER更新 -->
+  <view class="offer-section">
+    <view class="section-header">
+      <text class="section-header-title">最新OFFER更新 & 发榜</text>
+      <text class="more-link">更多 ></text>
+    </view>
+    <view class="offer-list">
+      <view class="offer-card" wx:for="{{activities}}" wx:key="id" bindtap="onActivityTap" data-id="{{item.id}}" data-item="{{item}}">
+        <view class="offer-logo">
+          <image src="{{item.image}}" mode="aspectFill" class="offer-logo-img"></image>
+        </view>
+        <view class="offer-info">
+          <text class="offer-count">{{item.count || '0'}}枚</text>
+          <text class="offer-name">{{item.title}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

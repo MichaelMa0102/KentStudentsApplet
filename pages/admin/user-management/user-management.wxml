@@ -1,0 +1,104 @@
+<view class="user-management-container">
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <view class="header-left" bindtap="onBack">
+      <text class="back-icon">‹</text>
+    </view>
+    <view class="header-center">
+      <text class="header-title">用户管理</text>
+    </view>
+    <view class="header-right"></view>
+  </view>
+
+  <!-- 搜索 -->
+  <view class="search-section">
+    <view class="search-bar">
+      <input 
+        class="search-input" 
+        placeholder="搜索用户昵称或ID" 
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+      />
+      <button class="search-btn" bindtap="onSearch">搜索</button>
+    </view>
+  </view>
+
+  <!-- 数据列表 -->
+  <view class="data-list">
+    <view class="list-header">
+      <text class="header-avatar">头像</text>
+      <text class="header-name">用户昵称</text>
+      <text class="header-role">角色</text>
+      <text class="header-action">操作</text>
+    </view>
+    
+    <scroll-view class="list-content" scroll-y>
+      <view class="list-item" wx:for="{{userList}}" wx:key="id">
+        <image class="user-avatar" src="{{item.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+        <view class="user-info">
+          <text class="user-name">{{item.nickName}}</text>
+          <text class="user-id">{{item.openid || 'ID: ' + item.id}}</text>
+        </view>
+        <view class="user-role">
+          <view wx:if="{{isSuperAdmin}}" class="role-picker-container">
+            <picker 
+              class="role-picker" 
+              range="{{roleOptions}}" 
+              value="{{item.role === 2 ? 2 : (item.role === 1 ? 1 : 0)}}" 
+              bindchange="onRoleChange" 
+              data-id="{{item.id}}"
+            >
+              <view class="role-display">
+                <text class="role-text">{{item.role === 2 ? '超级管理员' : (item.role === 1 ? '管理员' : '普通用户')}}</text>
+                <text class="role-arrow">▼</text>
+              </view>
+            </picker>
+          </view>
+          <view wx:else class="role-display role-display--readonly">
+            <text class="role-text">{{item.role === 2 ? '超级管理员' : (item.role === 1 ? '管理员' : '普通用户')}}</text>
+          </view>
+        </view>
+        <view class="user-action">
+          <button class="detail-btn" bindtap="viewUserDetail" data-item="{{item}}">详情</button>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 用户详情弹窗 -->
+  <view wx:if="{{showDetailModal}}" class="modal-overlay" bindtap="hideDetailModal">
+    <view class="modal-content" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">用户详情</text>
+        <text class="modal-close" bindtap="hideDetailModal">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="detail-item">
+          <image class="detail-avatar" src="{{selectedUser.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+          <view class="detail-info">
+            <text class="detail-name">{{selectedUser.nickName}}</text>
+            <text class="detail-role">{{selectedUser.role === 1 ? '管理员' : '普通用户'}}</text>
+          </view>
+        </view>
+        <view class="detail-section">
+          <text class="section-title">基本信息</text>
+          <view class="info-row">
+            <text class="info-label">用户ID：</text>
+            <text class="info-value">{{selectedUser.openid || selectedUser.id}}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">注册时间：</text>
+            <text class="info-value">{{selectedUser.registerTime || '未知'}}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">最后登录：</text>
+            <text class="info-value">{{selectedUser.lastLogin || '未知'}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="close-btn" bindtap="hideDetailModal">关闭</button>
+      </view>
+    </view>
+  </view>
+</view>

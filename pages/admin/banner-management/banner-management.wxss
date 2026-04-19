@@ -1,0 +1,314 @@
+/* 轮播图管理样式 */
+.banner-management-container {
+  height: 100vh;
+  background: #f5f7fa;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部导航栏 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100rpx;
+  background: #1e3c72;
+  padding: 0 30rpx;
+}
+
+.header-left {
+  width: 60rpx;
+}
+
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.header-right {
+  width: 60rpx;
+  text-align: right;
+}
+
+.back-icon {
+  color: white;
+  font-size: 44rpx;
+  font-weight: bold;
+}
+
+.header-title {
+  color: white;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.add-icon {
+  color: white;
+  font-size: 44rpx;
+  font-weight: bold;
+}
+
+/* 数据列表 */
+.data-list {
+  flex: 1;
+  background: white;
+  margin: 0 20rpx 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.list-header {
+  display: flex;
+  padding: 20rpx;
+  background: #f8f8f8;
+  border-bottom: 2rpx solid #e8e8e8;
+  font-weight: bold;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.header-preview {
+  width: 150rpx;
+  text-align: center;
+}
+
+.header-title {
+  flex: 1;
+  text-align: left;
+  color: #333;
+  font-size: 26rpx;
+}
+
+.header-action {
+  width: 200rpx;
+  text-align: center;
+}
+
+.list-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.banner-preview {
+  width: 150rpx;
+  text-align: center;
+}
+
+.banner-image {
+  width: 120rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  object-fit: cover;
+}
+
+.banner-info {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.banner-title {
+  display: block;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.banner-id {
+  display: block;
+  font-size: 22rpx;
+  color: #999;
+}
+
+.banner-action {
+  width: 200rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-btn {
+  width: 80rpx;
+  height: 50rpx;
+  background: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+.delete-btn {
+  width: 80rpx;
+  height: 50rpx;
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+/* 弹窗 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 80%;
+  max-width: 500rpx;
+  background: white;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  background: #f8f8f8;
+}
+
+.modal-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.modal-close {
+  font-size: 40rpx;
+  color: #999;
+}
+
+.modal-body {
+  padding: 30rpx 20rpx;
+}
+
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 80rpx;
+  border: 2rpx solid #e8e8e8;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  font-size: 26rpx;
+  background: #f8f8f8;
+}
+
+.image-preview {
+  width: 100%;
+  height: 200rpx;
+  border: 2rpx solid #e8e8e8;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-top: 10rpx;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 200rpx;
+  border: 2rpx dashed #e8e8e8;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rpx;
+  background: #fafafa;
+}
+
+.placeholder-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.modal-footer {
+  display: flex;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.cancel-btn {
+  flex: 1;
+  height: 80rpx;
+  background: #f0f0f0;
+  color: #333;
+  border: none;
+  font-size: 28rpx;
+}
+
+.confirm-btn {
+  flex: 1;
+  height: 80rpx;
+  background: #1e90ff;
+  color: white;
+  border: none;
+  font-size: 28rpx;
+}
+
+/* 响应式调整 */
+@media (max-width: 375px) {
+  .header-preview {
+    width: 120rpx;
+  }
+  
+  .header-action {
+    width: 160rpx;
+  }
+  
+  .banner-preview {
+    width: 120rpx;
+  }
+  
+  .banner-image {
+    width: 100rpx;
+    height: 60rpx;
+  }
+  
+  .banner-action {
+    width: 160rpx;
+  }
+  
+  .edit-btn,
+  .delete-btn {
+    width: 70rpx;
+    font-size: 22rpx;
+  }
+}

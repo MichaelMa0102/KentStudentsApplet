@@ -1,0 +1,80 @@
+<view class="admin-container">
+  <!-- 顶部导航栏 -->
+  <view class="admin-header">
+    <view class="admin-header-left" bindtap="onBack">
+      <text class="back-icon">‹</text>
+    </view>
+    <view class="admin-header-center">
+      <text class="admin-title">管理中心</text>
+    </view>
+    <view class="admin-header-right"></view>
+  </view>
+
+  <!-- 管理员信息 -->
+  <view class="admin-info">
+    <image class="admin-avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+    <view class="admin-details">
+      <text class="admin-name">{{userInfo.nickName}}</text>
+      <text class="admin-role">管理员</text>
+    </view>
+  </view>
+
+  <!-- 管理功能列表 -->
+  <view class="admin-menu">
+    <!-- 数据管理 -->
+    <view class="admin-section">
+      <text class="section-title">数据管理</text>
+      <view class="menu-grid">
+        <view class="menu-item" bindtap="goToSchoolManagement">
+          <view class="menu-icon menu-icon--school">🏫</view>
+          <text class="menu-text">学校数据</text>
+        </view>
+        <view class="menu-item" bindtap="goToOfferManagement">
+          <view class="menu-icon menu-icon--offer">🎓</view>
+          <text class="menu-text">OFFER数据</text>
+        </view>
+        <view wx:if="{{isSuperAdmin}}" class="menu-item" bindtap="goToBannerManagement">
+          <view class="menu-icon menu-icon--banner">🖼️</view>
+          <text class="menu-text">轮播图管理</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 用户管理（仅超级管理员可见） -->
+    <view wx:if="{{isSuperAdmin}}" class="admin-section">
+      <text class="section-title">用户管理</text>
+      <view class="menu-grid">
+        <view class="menu-item" bindtap="goToUserManagement">
+          <view class="menu-icon menu-icon--user">👥</view>
+          <text class="menu-text">用户列表</text>
+        </view>
+        <view class="menu-item" bindtap="goToRoleManagement">
+          <view class="menu-icon menu-icon--role">🛡️</view>
+          <text class="menu-text">权限管理</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 系统设置 -->
+    <view class="admin-section">
+      <text class="section-title">系统设置</text>
+      <view class="menu-grid">
+        <view class="menu-item" bindtap="goToSystemSettings">
+          <view class="menu-icon menu-icon--settings">⚙️</view>
+          <text class="menu-text">系统设置</text>
+        </view>
+        <view class="menu-item" bindtap="goToLog">
+          <view class="menu-icon menu-icon--log">📋</view>
+          <text class="menu-text">操作日志</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-section">
+    <view class="logout-btn" bindtap="confirmLogout">
+      <text class="logout-text">退出登录</text>
+    </view>
+  </view>
+</view>

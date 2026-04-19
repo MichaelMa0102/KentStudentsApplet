@@ -1,0 +1,109 @@
+<view class="page">
+  <view class="header-bg">
+    <view class="main-tabs">
+      <view
+        class="main-tab {{item.active ? 'main-tab--on' : ''}}"
+        wx:for="{{mainTabs}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onMainTabTap"
+      >
+        {{item.name}}
+      </view>
+    </view>
+
+    <view class="filter-row">
+      <text class="filter-pill">{{filterYear}} ▼</text>
+      <text class="filter-pill">{{filterStudent}} ▼</text>
+      <text class="filter-pill">{{filterSort}} ▼</text>
+      <text class="filter-help">?</text>
+    </view>
+
+    <view class="search-row">
+      <view class="search-inner">
+        <text class="search-icon">🔍</text>
+        <input
+          class="search-input"
+          placeholder="Offer学校名"
+          value="{{searchKeyword}}"
+          bindinput="onSearchInput"
+          confirm-type="search"
+          bindconfirm="onSearchConfirm"
+        />
+      </view>
+      <view class="search-btn" bindtap="onSearchConfirm">搜</view>
+    </view>
+
+    <scroll-view class="chip-scroll" scroll-x>
+      <view class="chip-row">
+        <view
+          class="chip {{item.active ? 'chip--on' : ''}}"
+          wx:for="{{regionTabs}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onRegionTap"
+        >
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+
+    <scroll-view class="chip-scroll chip-scroll--2" scroll-x>
+      <view class="chip-row">
+        <view
+          class="chip chip--sm {{item.active ? 'chip--on' : ''}}"
+          wx:for="{{categoryTabs}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onCategoryTap"
+        >
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="table-card">
+    <view class="table-head">
+      <text class="th th-rank">排名</text>
+      <text class="th th-school">OFFER学校</text>
+      <text class="th th-count">录取数量</text>
+    </view>
+
+    <scroll-view class="list-scroll" scroll-y>
+      <view class="table-row" wx:for="{{rankingList}}" wx:key="id">
+        <view class="td td-rank">
+          <view wx:if="{{item.rank <= 3}}" class="medal medal-{{item.rank}}">
+            <text class="medal-num">{{item.rank}}</text>
+          </view>
+          <text wx:else class="rank-plain">{{item.rank}}</text>
+        </view>
+        <view
+          class="td td-school td-school--tap"
+          catchtap="onSchoolIntroTap"
+          data-id="{{item.id}}"
+        >
+          <view class="logo-wrap">
+            <image wx:if="{{item.logo}}" class="school-logo" src="{{item.logo}}" mode="aspectFill" />
+            <text wx:else class="logo-placeholder">{{item.nameZh[0]}}</text>
+          </view>
+          <view class="school-text">
+            <text class="name-zh">{{item.nameZh}}</text>
+            <text class="name-en">{{item.nameEn}}</text>
+          </view>
+        </view>
+        <view
+          class="td td-count td-count--tap"
+          catchtap="onStudentCasesTap"
+          data-id="{{item.id}}"
+        >
+          <view class="count-block">
+            <text class="count-num">{{item.count}}</text>
+            <text class="count-hint">录取案例</text>
+          </view>
+          <text class="row-arrow">›</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
